@@ -1,13 +1,17 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/ubuntu-base:8.1.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:6.1.3
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
+
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+ARG BUILD_ARCH=amd64
+
 # Setup base system
 RUN \
     apt-get update \
+    \
     && apt-get install -y --no-install-recommends \
         binutils=2.34-6ubuntu1.3 \
         jsvc=1.0.15-8 \
@@ -20,7 +24,9 @@ RUN \
         "https://dl.ui.com/unifi/7.2.95/unifi_sysvinit_all.deb" \
     \
     && dpkg --install /tmp/unifi.deb \
+    \
     && apt-get clean \
+    \
     && rm -fr \
         /tmp/* \
         /var/cache/* \
