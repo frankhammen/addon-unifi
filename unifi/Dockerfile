@@ -5,10 +5,7 @@ FROM $BUILD_FROM
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-ARG BUILD_ARCH=amd64
-
 # Setup base system
-# RUN apt-get update && apt-get install -y apt-transport-https
 RUN apt-get update && apt-get install -y \
         apt-transport-https
         binutils=2.34-6ubuntu1.3 \
