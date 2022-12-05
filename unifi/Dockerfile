@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/ubuntu-base:8.1.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/ubuntu-base/amd64:7.2.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -6,6 +6,7 @@ FROM ${BUILD_FROM}
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base system
+ARG BUILD_ARCH=amd64
 RUN \
     apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -14,7 +15,7 @@ RUN \
         libcap2=1:2.32-1 \
         logrotate=3.14.0-4ubuntu3 \
         mongodb-server=1:3.6.9+really3.6.8+90~g8e540c0b6d-0ubuntu5.3 \
-        openjdk-8-jdk-headless=8u342-b07-0ubuntu1~20.04 \
+        openjdk-8-jdk-headless=8u312-b07-0ubuntu1~20.04 \
     \
     && curl -J -L -o /tmp/unifi.deb \
         "https://dl.ui.com/unifi/7.3.76/unifi_sysvinit_all.deb" \
@@ -23,10 +24,8 @@ RUN \
     && apt-get clean \
     && rm -fr \
         /tmp/* \
-        /var/cache/* \
-        /var/lib/apt/lists/* \
-        /var/log/*.log \
-        /var/log/apt
+        /var/{cache,log}/* \
+        /var/lib/apt/lists/*
 
 # Copy root filesystem
 COPY rootfs /
