@@ -7,7 +7,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base system
 RUN apt-get update && apt-get install -y \
-        apt-transport-https
         binutils=2.34-6ubuntu1.3 \
         jsvc=1.0.15-8 \
         libcap2=1:2.32-1 \
