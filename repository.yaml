@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
 name: Frank Home Assistant add-on repository
-url: 'https://github.com/frankhammen/addon-unifi'
+url: 'https://https://github.com/frankhammen/addon-unifi'
 maintainer: Awesome Maintainer Frank<awesome@example.com>
