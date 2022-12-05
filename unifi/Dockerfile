@@ -9,9 +9,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_ARCH=amd64
 
 # Setup base system
-RUN apt-get update 
-    
-    RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         binutils=2.34-6ubuntu1.3 \
         jsvc=1.0.15-8 \
         libcap2=1:2.32-1 \
